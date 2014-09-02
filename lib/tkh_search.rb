@@ -1,5 +1,6 @@
 require "tkh_search/version"
 
 module TkhSearch
-  # Your code goes here...
+  class Engine < ::Rails::Engine
+  end
 end

@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "tkh_search"
   spec.version       = TkhSearch::VERSION
   spec.authors       = ["Swami Atma"]
-  spec.email         = ["swami@ohlalaweb.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.email         = ["swami@TenThousandHours.eu"]
+  spec.summary       = %q{TODO: Lightweigh Rails search engine}
+  spec.description   = %q{TODO: A Rails engine providing full text search via a DB. Not suitable for massive apps.}
+  spec.homepage      = "https://github.com/allesklar/tkh_search"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
