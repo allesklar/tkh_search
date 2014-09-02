@@ -1,0 +1,6 @@
+<%= form_tag search_path, method: 'get', class: 'navbar-form navbar-left' do %>
+  <%= text_field_tag 'query', '', class: 'form-control' %>
+  <%= button_tag type: 'button', class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-search"></span>&nbsp;search
+  <% end %>
+<% end %>
