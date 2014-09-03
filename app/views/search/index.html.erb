@@ -1,3 +1,9 @@
-<h1>Search Results</h1>
+<% content_for :meta_title, "searching for '#{@query}'" %>
+<% content_for :meta_description, "Search results for the terms '#{@query}' in the The Online Course for Western Yogis" %>
 
-<p>The results will show here.</p>
+<h1>
+  Search Results for<br />
+  '<%= @query %>'
+</h1>
+
+<p>The results will be shown here.</p>
