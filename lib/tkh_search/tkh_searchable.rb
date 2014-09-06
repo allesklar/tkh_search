@@ -1,7 +1,10 @@
 module TkhSearch
   module TkhSearchable
 
-    # Class methods in here can be called from any model without any setup
+    # to enable the initializer
+    mattr_accessor :indexable_models
+
+    # Class methods
 
     def tkh_searchable
       include TkhSearch::TkhSearchable::LocalInstanceMethods
