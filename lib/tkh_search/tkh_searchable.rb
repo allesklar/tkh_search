@@ -8,7 +8,7 @@ module TkhSearch
 
     def tkh_searchable
       include TkhSearch::TkhSearchable::LocalInstanceMethods
-      before_save :index_record
+      after_save :index_record
     end
 
     def reverse_indexing
@@ -48,9 +48,9 @@ module TkhSearch
       words.each do |word,strength|
         term = TkhSearchTerm.find_or_create_by( word: word )
         instance = TkhSearchInstance.find_or_create_by(
-                                  model_name: self.name,
-                                  model_record_id: record.id,
-                                  tkh_search_term_id: term.id )
+                    model_name: self.name,
+                    model_record_id: record.id,
+                    tkh_search_term_id: term.id )
         instance.rating   = strength
         instance.language = I18n.locale
         defined?(record.published?) ? instance.published = record.published? : instance.published = false
@@ -62,6 +62,18 @@ module TkhSearch
       def index_record
         # get record's model name, constantize it, and call the indexing class method
         (Kernel.const_get self.class.name).index_individual_record(self)
+        remove_obsolete_instances(self)
+      end
+
+      private
+
+      def remove_obsolete_instances(record)
+        # after an individual record save and the record has been reindexed
+        # we need to remove indexed instances for words which have been deleted
+        obsolete_instances = TkhSearchInstance.where( 'model_name = ? and model_record_id = ?', record.class.name, record.id ).a_bit_old
+        obsolete_instances.each do |instance|
+          instance.destroy!
+        end
       end
     end
 
