@@ -1,4 +1,4 @@
-<%= form_tag search_path, class: 'navbar-form navbar-left' do %>
+<%= form_tag search_path, class: 'navbar-form navbar-left navbar-search-form' do %>
   <%= text_field_tag 'query', '', class: 'form-control' %>
   <%= hidden_field_tag 'models_to_index', models_to_index %>
   <%= button_tag type: 'submit', class: 'btn btn-default' do %>

@@ -31,6 +31,7 @@ module TkhSearch
         # Remove html tags, transform to lowercase and split words
         # Splitting only with spaces because we want to preserve devanagari characters
         Sanitize.fragment(record.send(field_name)).downcase.split.each do |word|
+          word = clean_up(word)
           if words[word] # add strength to existing word rating
             words[word] += strength
           else # new word
@@ -42,6 +43,10 @@ module TkhSearch
     end
 
     private
+
+    def clean_up(str)
+      str.strip.sub(/\,$/, '').sub(/\.$/, '').sub(/^\'/, '').sub(/\'$/, '').strip
+    end
 
     def populate_index_tables( words, record )
       # populate tkh_search_terms and tkh_search_instances tables
@@ -62,15 +67,15 @@ module TkhSearch
       def index_record
         # get record's model name, constantize it, and call the indexing class method
         (Kernel.const_get self.class.name).index_individual_record(self)
-        remove_obsolete_instances(self)
+        remove_obsolete_instances
       end
 
       private
 
-      def remove_obsolete_instances(record)
+      def remove_obsolete_instances
         # after an individual record save and the record has been reindexed
         # we need to remove indexed instances for words which have been deleted
-        obsolete_instances = TkhSearchInstance.where( 'model_name = ? and model_record_id = ?', record.class.name, record.id ).a_bit_old
+        obsolete_instances = TkhSearchInstance.where( 'model_name = ? and model_record_id = ?', self.class.name, self.id ).a_bit_old
         obsolete_instances.each do |instance|
           instance.destroy!
         end
