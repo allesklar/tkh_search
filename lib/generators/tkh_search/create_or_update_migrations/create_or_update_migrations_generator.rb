@@ -17,10 +17,10 @@ module TkhSearch
 
       def copy_migrations
         puts 'creating search migrations'
-        migration_template "create_words.rb", "db/migrate/create_words.rb"
-        migration_template "create_instances.rb", "db/migrate/create_instances.rb"
-        migration_template "create_queries.rb", "db/migrate/create_queries.rb"
-        migration_template "create_searches.rb", "db/migrate/create_searches.rb"
+        migration_template "create_tkh_search_terms.rb", "db/migrate/create_tkh_search_terms.rb"
+        migration_template "create_tkh_search_instances.rb", "db/migrate/create_tkh_search_instances.rb"
+        migration_template "create_tkh_search_queries.rb", "db/migrate/create_tkh_search_queries.rb"
+        migration_template "create_tkh_searches.rb", "db/migrate/create_tkh_searches.rb"
       end
 
     end
