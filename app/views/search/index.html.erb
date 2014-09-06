@@ -1,9 +1,23 @@
 <% content_for :meta_title, "searching for '#{@query}'" %>
-<% content_for :meta_description, "Search results for the terms '#{@query}' in the The Online Course for Western Yogis" %>
+<% content_for :meta_description, "Search results for the terms '#{@query}' in The Online Course for Western Yogis" %>
 
 <h1>
   Search Results for<br />
   '<%= @query %>'
 </h1>
 
-<p>The results will be shown here.</p>
+<ul class="search-results">
+  <% if @results.any? %>
+    <% @results.each do |result| %>
+      <% record = (Kernel.const_get result.model_name).find(result.model_record_id) %>
+      <%= content_tag :li,
+        "<span class='sr-model-name'>#{result.model_name}</span> -
+        <span class='sr-model-name'>#{link_to record.name, record}</span> -
+        rating: #{result.rating}
+        ".html_safe
+      %>
+    <% end %>
+  <% else %>
+    <li>There are no page results corresponding to this query.</li>
+  <% end %>
+</ul>
