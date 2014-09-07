@@ -1,0 +1,1 @@
+$('.<%= @results_css_class %>').html("<%= escape_javascript(render( 'search/search_results', search_results: @search_results )) %>").hide().slideDown(500);

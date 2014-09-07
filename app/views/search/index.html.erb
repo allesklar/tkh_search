@@ -6,18 +6,4 @@
   '<%= @query %>'
 </h1>
 
-<ul class="search-results">
-  <% if @search_results.any? %>
-    <% @search_results.each do |result| %>
-      <% record = (Kernel.const_get result.model_name).find(result.model_record_id) %>
-      <%= content_tag :li,
-        "<span class='sr-model-name'>#{result.model_name}</span> -
-        <span class='sr-model-name'>#{link_to record.name, record}</span> -
-        <span class='sr-rating'>#{result.rating}</span>
-        ".html_safe
-      %>
-    <% end %>
-  <% else %>
-    <li>There are no page results corresponding to this query.</li>
-  <% end %>
-</ul>
+<%= render 'search/search_results', search_results: @search_results %>

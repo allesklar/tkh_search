@@ -3,6 +3,7 @@ class SearchController < ApplicationController
   def index
     @query = params[:query].downcase
     @models_to_search = params[:models_to_search].split
+    @results_css_class = params[:results_css_class] || 'js-search-results'
     token = SecureRandom.base64
     search_terms = []
     @query.split.each do |query_word|
@@ -23,6 +24,10 @@ class SearchController < ApplicationController
       end
     end
     @search_results = TkhSearchResult.where( token: token ).by_top_rating.limit(25)
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
   end
 
   def index_all_models
