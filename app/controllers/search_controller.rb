@@ -3,23 +3,26 @@ class SearchController < ApplicationController
   def index
     @query = params[:query].downcase
     @models_to_search = params[:models_to_search].split
+    token = SecureRandom.base64
     search_terms = []
     @query.split.each do |query_word|
       search_terms << TkhSearchTerm.find_by( word: query_word )
     end
-    instance_ids = []
     if search_terms.any?
       search_terms.each do |search_term|
         search_term.tkh_search_instances.each do |search_instance|
-          instance_ids << search_instance.id if @models_to_search.include? search_instance.model_name
+          if @models_to_search.include? search_instance.model_name
+            search_result = TkhSearchResult.find_or_create_by(
+                                token: token,
+                                model_name: search_instance.model_name,
+                                model_record_id: search_instance.model_record_id)
+            search_result.rating += search_instance.rating
+            search_result.save
+          end
         end
       end
     end
-    if instance_ids.any?
-      @results = TkhSearchInstance.where(id: instance_ids).by_top_rating.limit(25)
-    else
-      @results = []
-    end
+    @search_results = TkhSearchResult.where( token: token ).by_top_rating.limit(25)
   end
 
   def index_all_models
