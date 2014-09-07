@@ -93,7 +93,7 @@ There is a form partial to that effect.
 In this case you have to tell the gem in which div to render the results.
 
 ```ruby
-<%= render 'search/search_form_for_navbar', models_to_search: 'Page', results_css_class: 'blog-js-search-results' %>
+<%= render 'search/search_form', models_to_search: 'Page', results_css_class: 'blog-js-search-results' %>
 ```
 
 And of course, you need to place a div with the same class name under your form.
@@ -104,7 +104,7 @@ And of course, you need to place a div with the same class name under your form.
 This can also be used for the sake of localization
 
 ```ruby
-<%= render 'search/search_form_for_navbar', models_to_search: 'Event', submit_label: 'find an awesome event' %>
+<%= render 'search/search_form', models_to_search: 'Event', submit_label: 'find an awesome event' %>
 ```
 
 
