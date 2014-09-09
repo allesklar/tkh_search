@@ -4,7 +4,7 @@
       <% record = (Kernel.const_get result.model_name).find(result.model_record_id) %>
       <%= content_tag :li,
         "<span class='sr-model-name'>#{result.model_name}</span> -
-        <span class='sr-model-name'>#{link_to record.name, record}</span> -
+        <span class='sr-record-link'>#{link_to record.name, record}</span> -
         <span class='sr-rating'>#{result.rating}</span>
         ".html_safe
       %>
