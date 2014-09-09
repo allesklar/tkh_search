@@ -1,6 +1,6 @@
 # TkhSearch
 
-This is a simple Rails gem search engine. It uses the local database for reverse indexing and to log search queries. Multi-model searches are supported.
+This is a simple Rails gem full text search engine. It uses the local database for reverse indexing and to log search queries. Multi-model searches are supported.
 
 
 ## Installation
@@ -19,6 +19,10 @@ Install initializer and migrations:
 
     $ rake tkh_search:install
 
+Or, upon updating the gem:
+
+    $ rake tkh_search:update
+
 Run the migrations:
 
     $ rake db:migrate
@@ -29,8 +33,11 @@ Run the migrations:
 In any model you want to index and search, copy/paste and customize the following code:
 
 ```ruby
-tkh_searchable
+tkh_searchable # for after_save re-indexing hooks
 def self.tkh_search_indexable_fields
+  # The key is the attribute name, the value is the desired strength.
+  # By the way, your model needs a title or a name attribute. Real or virtual.
+  # Necessary to display result links
   indexable_fields = {
     title: 8,
     description: 3,
@@ -47,13 +54,17 @@ To index a model's records, use the _'reverse_indexing'_ class method. Example:
 ModelName.reverse_indexing
 ```
 
-Having configured all the models you wish to index in your search engine, you can index them all by first setting up the initializer.
+Having configured all the models you wish to index in your search engine, you can index them all at once by first setting up the initializer.
 
 ```ruby
 TkhSearch::TkhSearchable.indexable_models = %w( Page Post Event WhateverYouWant )
 ```
 
 and secondly, by pointing your browser to: /index_all_models
+
+#### What about new and updated records?
+
+Any single record will be indexed upon saving.
 
 
 ## Searching your site
