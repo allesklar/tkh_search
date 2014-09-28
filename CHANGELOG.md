@@ -2,6 +2,11 @@
 
 
 
+## 0.0.4
+
+* Fixed bug when search with multiple word query was crashing when one word had no instances.
+
+
 ## 0.0.3
 
 * Added this changelog file.
