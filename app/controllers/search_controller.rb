@@ -7,10 +7,10 @@ class SearchController < ApplicationController
     token = SecureRandom.base64
     search_terms = []
     @query.split.each do |query_word|
-      search_terms << TkhSearchTerm.includes(:tkh_search_instances).find_by( word: query_word )
+      search_terms << TkhSearchTerm.includes(:tkh_search_instances).find_or_create_by( word: query_word )
     end
-    if search_terms.any?
-      search_terms.each do |search_term|
+    search_terms.each do |search_term|
+      if search_term.tkh_search_instances.any?
         search_term.tkh_search_instances.each do |search_instance|
           if @models_to_search.include? search_instance.model_name
             search_result = TkhSearchResult.find_or_create_by(
