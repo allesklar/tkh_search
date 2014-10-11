@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def index
-    @query = params[:query].downcase
+    @query = params[:query].downcase.strip
     @models_to_search = params[:models_to_search].split
     @results_css_class = params[:results_css_class] || 'js-search-results'
     token = SecureRandom.base64
@@ -28,6 +28,7 @@ class SearchController < ApplicationController
       format.html {}
       format.js {}
     end
+    log_search_event
   end
 
   def index_all_models
@@ -36,6 +37,17 @@ class SearchController < ApplicationController
       Kernel.const_get(model).reverse_indexing
     end
     redirect_to root_path, notice: "All searchable models have been indexed."
+  end
+
+  private
+
+  def log_search_event
+    if @query.present?
+      search_query = TkhSearchQuery.find_or_create_by( string: @query)
+      search_event = TkhSearchEvent.create(
+                          tkh_search_query_id: search_query.id,
+                          language: I18n.locale )
+    end
   end
 
 end
