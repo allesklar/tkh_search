@@ -1,0 +1,31 @@
+<h1>search statistics</h1>
+
+<h3>The index ...</h3>
+
+<p>... has <strong><%= TkhSearchTerm.count %></strong> different search terms pointing to <strong><%= TkhSearchInstance.count %></strong> instances.</p>
+
+<h3>Total User Searches</h3>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>last 24 hours</th>
+      <th>last month</th>
+      <th>ever</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= TkhSearchEvent.count %></td>
+      <td><%= TkhSearchEvent.count %></td>
+      <td><%= TkhSearchEvent.count %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Most Popular Queries in the Last Month</h3>
+
+
+
+<%= render 'shared/admin_sidebar' %>
