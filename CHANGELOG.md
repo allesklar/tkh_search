@@ -2,6 +2,12 @@
 
 
 
+## 0.1
+
+* Every user search is logged in the database
+* Log stats availabble to admins
+
+
 ## 0.0.4
 
 * Fixed bug when search with multiple word query was crashing when one word had no instances.
