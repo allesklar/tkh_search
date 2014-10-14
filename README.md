@@ -118,6 +118,11 @@ This can also be used for the sake of localization
 <%= render 'search/search_form', models_to_search: 'Event', submit_label: 'find an awesome event' %>
 ```
 
+## Search Stats
+
+Administrators can see the indexing and searching stats at
+
+     /search_stats
 
 ## Missing Features
 
