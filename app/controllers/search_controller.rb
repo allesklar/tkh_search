@@ -12,10 +12,10 @@ class SearchController < ApplicationController
     search_terms.each do |search_term|
       if search_term.tkh_search_instances.any?
         search_term.tkh_search_instances.each do |search_instance|
-          if @models_to_search.include? search_instance.model_name
+          if @models_to_search.include? search_instance.host_model_name
             search_result = TkhSearchResult.find_or_create_by(
                                 token: token,
-                                model_name: search_instance.model_name,
+                                host_model_name: search_instance.host_model_name,
                                 model_record_id: search_instance.model_record_id)
             search_result.rating += search_instance.rating
             search_result.save

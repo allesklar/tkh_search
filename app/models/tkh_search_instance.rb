@@ -6,7 +6,7 @@ class TkhSearchInstance < ActiveRecord::Base
   scope :by_top_rating, -> { order('rating desc') }
 
   def unique_record_name
-    "#{model_name}-#{model_record_id}"
+    "#{host_model_name}-#{model_record_id}"
   end
 
 end

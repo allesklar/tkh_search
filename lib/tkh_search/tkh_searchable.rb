@@ -53,7 +53,7 @@ module TkhSearch
       words.each do |word,strength|
         term = TkhSearchTerm.find_or_create_by( word: word )
         instance = TkhSearchInstance.find_or_create_by(
-                    model_name: self.name,
+                    host_model_name: self.name,
                     model_record_id: record.id,
                     tkh_search_term_id: term.id )
         instance.rating   = strength
@@ -75,7 +75,7 @@ module TkhSearch
       def remove_obsolete_instances
         # after an individual record save and the record has been reindexed
         # we need to remove indexed instances for words which have been deleted
-        obsolete_instances = TkhSearchInstance.where( 'model_name = ? and model_record_id = ?', self.class.name, self.id ).a_bit_old
+        obsolete_instances = TkhSearchInstance.where( 'host_model_name = ? and model_record_id = ?', self.class.name, self.id ).a_bit_old
         obsolete_instances.each do |instance|
           instance.destroy!
         end

@@ -22,6 +22,7 @@ module TkhSearch
         migration_template "create_tkh_search_queries.rb", "db/migrate/create_tkh_search_queries.rb"
         migration_template "create_tkh_search_events.rb", "db/migrate/create_tkh_search_events.rb"
         migration_template "create_tkh_search_results.rb", "db/migrate/create_tkh_search_results.rb"
+        migration_template "fix_dangerous_attributes.rb", "db/migrate/fix_dangerous_attributes.rb"
       end
 
     end

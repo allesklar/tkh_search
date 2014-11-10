@@ -1,7 +1,7 @@
 <ul class="search-results">
   <% if search_results.any? %>
     <% search_results.each do |result| %>
-      <% record = (Kernel.const_get result.model_name).find(result.model_record_id) %>
+      <% record = (Kernel.const_get result.host_model_name).find(result.model_record_id) %>
       <% if defined? record.name %>
         <% link_label = record.name %>
       <% elsif defined? record.title %>
@@ -10,7 +10,7 @@
         <% link_label = 'no title or name' %>
       <% end %>
       <%= content_tag :li,
-        "<span class='sr-model-name'>#{result.model_name}</span> -
+        "<span class='sr-model-name'>#{result.host_model_name}</span> -
         <span class='sr-record-link'>#{link_to link_label, record}</span> -
         <span class='sr-rating'>#{result.rating}</span>
         ".html_safe
