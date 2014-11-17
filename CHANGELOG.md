@@ -2,6 +2,12 @@
 
 
 
+## 0.2
+
+* Added search stats section to readme.
+* Debugged the dangerous attributes created by model_name in two models.
+
+
 ## 0.1
 
 * Every user search is logged in the database
