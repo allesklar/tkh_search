@@ -2,6 +2,12 @@
 
 
 
+## 0.3
+
+* Added internationalization of queries
+* Little aesthetic improvement in search stats
+
+
 ## 0.2
 
 * Added search stats section to readme.
