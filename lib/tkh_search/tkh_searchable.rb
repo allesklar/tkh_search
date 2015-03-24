@@ -57,7 +57,9 @@ module TkhSearch
                     model_record_id: record.id,
                     tkh_search_term_id: term.id )
         instance.rating   = strength
-        instance.language = I18n.locale
+        # changing this code temporarily to accommodate specific website
+        # instance.language = I18n.locale
+        instance.language = record.language # FIXME - change code back later.
         defined?(record.published?) ? instance.published = record.published? : instance.published = false
         instance.save!
       end
