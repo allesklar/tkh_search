@@ -2,6 +2,11 @@
 
 
 
+## 0.3.0.1
+
+* Debugging localization
+
+
 ## 0.3
 
 * Added internationalization of queries
