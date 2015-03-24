@@ -28,7 +28,7 @@
 
 <ul>
   <% TkhSearchEvent.last_month.group(:tkh_search_query_id).order('COUNT(tkh_search_query_id) desc').limit(50).each do |event| %>
-    <li><%= "#{event.tkh_search_query.string} #{TkhSearchEvent.last_month.where(tkh_search_query_id: event.tkh_search_query_id).count}" %></li>
+    <li><%= "#{event.tkh_search_query.string}&nbsp;&nbsp;<span class=\"badge\">#{TkhSearchEvent.last_month.where(tkh_search_query_id: event.tkh_search_query_id).count}</span>".html_safe %></li>
   <% end %>
 </ul>
 
