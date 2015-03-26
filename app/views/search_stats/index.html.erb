@@ -2,7 +2,7 @@
 
 <h3>The index ...</h3>
 
-<p>... has <strong><%= TkhSearchTerm.count %></strong> different search terms pointing to <strong><%= TkhSearchInstance.count %></strong> instances.</p>
+<p>... has <strong><%= number_with_delimiter TkhSearchTerm.count, delimiter: ',' %></strong> different search terms pointing to <strong><%= number_with_delimiter TkhSearchInstance.count, delimiter: ',' %></strong> instances.</p>
 
 <h3>Total User Searches</h3>
 
