@@ -1,6 +1,11 @@
 # TKH Search
 
 
+## 0.4
+
+* Debugged crashing results when no record was present for the result.
+* Debugged search by locale.
+
 
 ## 0.3.0.1 & 0.3.0.2
 

@@ -1,3 +1,3 @@
 module TkhSearch
-  VERSION = "0.3.0.2"
+  VERSION = "0.4"
 end
