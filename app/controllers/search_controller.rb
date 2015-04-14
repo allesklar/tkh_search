@@ -4,7 +4,6 @@ class SearchController < ApplicationController
     @query = params[:query].downcase.strip
     @models_to_search = params[:models_to_search].split
     @results_css_class = params[:results_css_class] || 'js-search-results'
-    current_locale = @cl
     @the_current_locale = I18n.locale
     token = SecureRandom.base64
     search_terms = []
@@ -12,8 +11,8 @@ class SearchController < ApplicationController
       search_terms << TkhSearchTerm.find_or_create_by( word: query_word )
     end
     search_terms.each do |search_term|
-      if search_term.tkh_search_instances.for_locale(current_locale).any?
-        search_term.tkh_search_instances.for_locale(current_locale).each do |search_instance|
+      if search_term.tkh_search_instances.for_locale(@the_current_locale).any?
+        search_term.tkh_search_instances.for_locale(@the_current_locale).each do |search_instance|
           if @models_to_search.include? search_instance.host_model_name
             search_result = TkhSearchResult.find_or_create_by(
                                 token: token,
