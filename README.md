@@ -8,7 +8,7 @@ This is a simple Rails gem full text search engine. It uses the local database f
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'tkh_search'
+gem 'tkh_search', '~> 0.4'
 ```
 
 And then execute:
