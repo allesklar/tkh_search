@@ -1,7 +1,7 @@
 class SearchStatsController < ApplicationController
 
-  before_filter :authenticate
-  before_filter :authenticate_with_admin
+  before_action :authenticate
+  before_action -> { require_permission 'read_search_stats'}
 
   def index
     render :layout => 'admin'
