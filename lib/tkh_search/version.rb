@@ -1,3 +1,3 @@
 module TkhSearch
-  VERSION = "0.13"
+  VERSION = "1.0.beta1"
 end
