@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "tkh_search"
   spec.version       = TkhSearch::VERSION
   spec.authors       = ["Swami Atma"]
-  spec.email         = ["swami@TenThousandHours.eu"]
+  spec.email         = ["swamiatma@yoga108.org"]
   spec.summary       = %q{Lightweigh Rails search engine}
   spec.description   = %q{A Rails engine providing full text search via the DB. Not suitable for massive apps.}
   spec.homepage      = "https://github.com/allesklar/tkh_search"
